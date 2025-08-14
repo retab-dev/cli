@@ -1,2 +1,0 @@
-[console_scripts]
-retab = cli.main:app

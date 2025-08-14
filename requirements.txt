@@ -1,1 +1,5 @@
 typer[all]
+retab
+fastapi==0.116.1
+pyyaml
+python-dotenv==1.1.1

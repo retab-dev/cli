@@ -1,30 +1,30 @@
 import typer
 from typing import Optional
 from cli.commands.extract import extract_app
+from cli.commands.parse import parse_app
+
+version = "0.0.1"
 
 app = typer.Typer(
-    help="Retab is a powerful tab management and organization tool.",
+    help="Retab is a powerful document extraction tool.",
     add_completion=False,
     no_args_is_help=False
 )
 
-app.add_typer(extract_app, name="extract")
+app.add_typer(extract_app)
+app.add_typer(parse_app)
 
 def show_welcome():
     """Display the main help message in Bun-style format"""
-    version = "0.0.1"
     
-    welcome_text = f"""Retab is a powerful tab management and organization tool. ({version})
+    welcome_text = f"""Retab is a powerful document extraction tool. ({version})
 
 Usage: retab <command> [...flags] [...args]
 
 Commands:
-  extract   create <username>      Create a new user extraction
-            delete <username>      Delete a user extraction
+  extract <filename> [-o <out_file>]     Extract data from a document
   
-  hello     <name>                 Say hello to NAME
-  
-  <command> --help                 Print help text for command.
+  <command> --help                       Print help text for command.
 
 Learn more about Retab:           https://github.com/your-org/retab
 Report issues:                    https://github.com/your-org/retab/issues"""
@@ -36,23 +36,12 @@ def main(
     ctx: typer.Context,
     version: Optional[bool] = typer.Option(None, "--version", "-v", help="Show version information"),
 ):
-    """
-    Retab - A powerful tab management and organization tool.
-    """
     if version:
-        typer.echo("retab version 0.0.1")
+        typer.echo("retab version " + version)
         return
     
     if ctx.invoked_subcommand is None:
         show_welcome()
-
-@app.command()
-def hello(name: str, count: int = 1):
-    """
-    Say hello to NAME, optionally multiple times.
-    """
-    for _ in range(count):
-        typer.echo(f"Hello {name}!")
 
 if __name__ == "__main__":
     app()
