@@ -25,7 +25,7 @@ Usage: retab <command> [...flags] [...args]
 Commands:
   extract <filename> [-o <out_file>]     Extract data from a document
   parse <filename> [-o <out_file>]       Parse a document
-  mcp                                    Give details about the MCP server
+  mcp                                    Show MCP configuration for mcp.json
   <command> --help                       Print help text for command.
 
 Learn more about Retab:           https://github.com/your-org/retab
