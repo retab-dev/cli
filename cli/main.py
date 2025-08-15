@@ -2,7 +2,7 @@ import typer
 from typing import Optional
 from cli.commands.extract import extract_app
 from cli.commands.parse import parse_app
-
+from cli.commands.mcp import mcp_app
 version = "0.0.1"
 
 app = typer.Typer(
@@ -13,6 +13,7 @@ app = typer.Typer(
 
 app.add_typer(extract_app)
 app.add_typer(parse_app)
+app.add_typer(mcp_app)
 
 def show_welcome():
     """Display the main help message in Bun-style format"""
@@ -23,7 +24,8 @@ Usage: retab <command> [...flags] [...args]
 
 Commands:
   extract <filename> [-o <out_file>]     Extract data from a document
-  
+  parse <filename> [-o <out_file>]       Parse a document
+  mcp                                    Give details about the MCP server
   <command> --help                       Print help text for command.
 
 Learn more about Retab:           https://github.com/your-org/retab
@@ -37,7 +39,7 @@ def main(
     version: Optional[bool] = typer.Option(None, "--version", "-v", help="Show version information"),
 ):
     if version:
-        typer.echo("retab version " + version)
+        typer.echo(f"retab version {version}")
         return
     
     if ctx.invoked_subcommand is None:

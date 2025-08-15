@@ -1,7 +1,7 @@
 [project]
-name = "retab"
+name = "retabcli"
 version = "0.0.1"
 dependencies = ["typer[all]"]
 
 [project.scripts]
-retab = "cli.main:app"
+retabcli = "cli.main:app"
